@@ -1,19 +1,8 @@
 const express = require("express");
-const {
-  imageTestController,
-  emailTestController,
-  compbineController,
-} = require("../controller/testController");
+const { imageTestController } = require("../controller/testController");
+const { upload } = require("../middleware/imageUpload");
 const appRouter = express.Router();
 
-appRouter
-  .route("/imageTest")
-  .get((req, res) => res.json({ message: "Welcome to test page" }))
-  .post(imageTestController);
-
-appRouter
-  .route("/emailTest")
-  .get((req, res) => res.json({ message: "Welcome to test page" }))
-  .post(emailTestController);
+appRouter.route("/imageTest").post(upload, imageTestController);
 
 module.exports = appRouter;

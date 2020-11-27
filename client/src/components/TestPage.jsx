@@ -17,14 +17,15 @@ class TestPage extends Component {
   onFormSubmit = (values, { resetForm }) => {
     const { email, image } = values;
     const formData = new FormData();
-    formData.append("myfile", image);
+    formData.append("myfiles", image);
+    formData.append("email", email);
     const config = {
       headers: {
         "content-type": "multipart/form-data",
       },
     };
     this.props.imageUploadAction(formData, config);
-    this.props.emailSendAction(values);
+    //  this.props.emailSendAction(values);
   };
   render() {
     return (
@@ -100,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     imageUploadAction: (param1, param2) =>
       dispatch(imageUploadAction(param1, param2)),
-    emailSendAction: (param) => dispatch(emailSendAction(param)),
+    //   emailSendAction: (param) => dispatch(emailSendAction(param)),
   };
 };
 
