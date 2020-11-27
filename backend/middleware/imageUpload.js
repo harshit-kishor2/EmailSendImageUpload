@@ -12,7 +12,9 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage: Storage,
-  limits: 1000000,
+  limits: {
+    fileSize: 1000000, // max file size 1MB = 1000000 bytes
+  },
   fileFilter: (request, file, next) => {
     if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
       next("only upload files with jpg, jpeg, png format", false);
